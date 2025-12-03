@@ -27,7 +27,7 @@ AppUser({
 Map<String,dynamic> toMap(){
 
   return {
-    'uid' : uid,
+
    'userName' : name,
     'number' : number,
     'address' : address,
@@ -37,11 +37,11 @@ Map<String,dynamic> toMap(){
   };
 }
 
-factory AppUser.fromMap(Map<String,dynamic>map){
+factory AppUser.fromMap(Map<String,dynamic>map, { required String docId}){
 
   return AppUser(name: map['userName']  ?? '',
       number: int.tryParse(map['number']?.toString() ?? '0',)??0,
-      uid: map['uid'] ?? '',
+      uid: docId,
       address: map['address'] ?? '',
       gender: Genders.values.firstWhere((e)=>e.name == map['gender'], orElse:
       ()=>Genders.others),

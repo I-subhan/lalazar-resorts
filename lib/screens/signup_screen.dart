@@ -63,8 +63,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "email is  required";
-                        }else if (!Validators.isValidEmail(value)){
-
+                        } else if (!Validators.isValidEmail(value)) {
                           return 'Enter valid email';
                         }
                       },
@@ -76,13 +75,10 @@ class _SignupScreenState extends State<SignupScreen> {
                       hint: 'Enter password',
                       icon: Icons.lock_open_rounded,
                       color: Colors.grey,
-                      validator: (value){
-                        if(value == null||value.isEmpty){
-
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return 'Enter password';
-                        }
-                        else if(Validators.isValidPass(value)){
-
+                        } else if (Validators.isValidPass(value)) {
                           return 'password should be atleast 6 charactors';
                         }
                       },
@@ -93,11 +89,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       hint: 'Enter Full name',
                       icon: Icons.person,
                       color: Colors.grey,
-                        validator: (value){
-                          if(value == null||value.isEmpty){
-
-                            return 'Enter full name ';
-                          }}
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter full name ';
+                        }
+                      },
                     ),
                     SizedBox(height: mediaquery.screenheight * 0.0140),
                     CustomTextField(
@@ -105,23 +101,38 @@ class _SignupScreenState extends State<SignupScreen> {
                       hint: 'Enter your address',
                       icon: Icons.home_outlined,
                       color: Colors.grey,
-                        validator: (value){
-                          if(value == null||value.isEmpty){
-
-                            return 'Enter your address ';
-                          }}
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter your address ';
+                        }
+                      },
                     ),
                     SizedBox(height: mediaquery.screenheight * 0.0140),
                     CustomTextField(
                       controller: dobcontroller,
                       hint: 'Enter Date of Birth',
                       icon: Icons.date_range_outlined,
-                        color: Colors.grey,
-                        validator: (value){
-                          if(value == null||value.isEmpty){
+                      color: Colors.grey,
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(), // default date
+                          firstDate: DateTime(1900), // earliest allowed date
+                          lastDate: DateTime.now(), // latest allowed date
+                        );
 
-                            return 'Enter Date of birth ';
-                          }}
+                        if (pickedDate != null) {
+                          String formattedDate =
+                              "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                          dobcontroller.text = formattedDate;
+                        }
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter Date of birth';
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(height: mediaquery.screenheight * 0.0140),
                     CustomTextField(
@@ -129,11 +140,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       hint: 'Gender',
                       icon: Icons.people_alt_outlined,
                       color: Colors.grey,
-                        validator: (value){
-                          if(value == null||value.isEmpty){
-
-                            return 'Enter your gender ';
-                          }}
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter your gender ';
+                        }
+                      },
                     ),
                     SizedBox(height: mediaquery.screenheight * 0.0140),
                     CustomTextField(
@@ -145,8 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Phone number is  required";
-                        }else if (!Validators.isValidPakistaninumber(value)){
-
+                        } else if (!Validators.isValidPakistaninumber(value)) {
                           return 'Enter valid 11-digit number';
                         }
                       },

@@ -14,7 +14,7 @@ class UserService {
   Future<AppUser?> getUser(String uid) async {
     final doc = await _firestore.collection(_collection).doc(uid).get();
     if (!doc.exists) return null;
-    return AppUser.fromMap(doc.data()!);
+    return AppUser.fromMap(doc.data()!,docId: doc.id);
   }
 
   Future<void> updateUser(AppUser user) async {

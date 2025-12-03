@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final IconData icon;
   final String hint;
   final  Color? color;
+  final VoidCallback? onTap;
   final bool obscure;
   final bool isNumber;
   final String? Function(String?)? validator;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key,
   required this.controller,
     this.isNumber = false,
+    this.onTap,
     this.validator,
   required this.hint,
   required this.icon,
@@ -33,12 +35,15 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscure,
       style: TextStyle(color: Colors.black),
       validator: validator,
+      readOnly: onTap != null,
+      onTap: onTap,
       decoration: InputDecoration(
 
         hintText: hint,
         hintStyle: TextStyle(color: Colors.black),
         prefixIcon: Icon(icon,color: color,),
         contentPadding: EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+
 
 
         border: OutlineInputBorder(

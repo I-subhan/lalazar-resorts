@@ -25,7 +25,7 @@ class NotificationService {
       AppSettings.openAppSettings();
     }
 
-    // Initialize flutter_local_notifications
+    // flutter_local_notifications
     const AndroidInitializationSettings androidInit =
     AndroidInitializationSettings('@mipmap/ic_launcher');
     const DarwinInitializationSettings iosInit = DarwinInitializationSettings();
@@ -39,7 +39,7 @@ class NotificationService {
       showLocalNotification(message);
     });
 
-    // Background handler
+
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
     // Optional: print device token
@@ -90,7 +90,7 @@ class NotificationService {
 
   }
 
-  // Get device token for sending test notifications
+  // Get device token
   static Future<String?> getDeviceToken() async {
     return await _firebaseMessaging.getToken();
   }
@@ -107,7 +107,7 @@ class NotificationService {
   { _notified = true;
 
     NotificationService.showLocalNotification( RemoteMessage( notification: RemoteNotification( title: 'Hey $userName ',
-    body: data['status'] == 'confirm' ?'Your booking is confirmed' : 'your booking is rejected', ), ), );
+    body: data['status'] == 'confirmed' ?'Your booking is confirmed' : 'your booking is rejected', ), ), );
     FirebaseFirestore.instance .collection('bookings')
         .doc(docChange.doc.id)
         .update({'lastNotified': true}); } } } }); }
