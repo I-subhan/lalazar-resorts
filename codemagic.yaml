@@ -17,6 +17,8 @@ workflows:
           pod install
           cd ..
       - name: Build Android APK
-        script: flutter build apk --release --flavor android-production -t lib/main_prod.dart
+        script: flutter build apk --release --flavor android-production -t lib/main.dart
+
       - name: Build iOS IPA
-        script: flutter build ipa --release --flavor ios-production -t lib/main_prod.dart
+        script: flutter build ipa --release --flavor ios-production -t lib/main.dart
+
